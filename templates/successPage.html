@@ -8,6 +8,24 @@
 
 
 <body>
-	<h1>Successfully recorded!</h1>
+	<h1>Successfully uploaded!</h1>
+	<p>Type in your solution and select relative lines below </p>
+
+<form method = "POST" action = "/select" enctype = "multipart/form-data">
+
+	<p><input type = "text" name = "solution"><input type = "submit" value = "submit"></p>	
+
+	{% for i in range(len(lines_to_select)) %}
+    <div>
+    	<label>
+    	<input name = "select_lines" value = {{i}} type = "checkbox"> {{lines_to_select[i]}}
+    	</label>
+    </div>
+    {% endfor %}
+</form>
+
+
 	<p><a href="/support">Click to contribute more!</a></p>
+
+
 </body>
