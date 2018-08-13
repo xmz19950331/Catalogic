@@ -6,13 +6,25 @@ import base64
 import csv
 import sys
 import json
+from sklearn.externals import joblib
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import KMeans
+import pickle
+import nltk
+import re
+from nltk.stem.snowball import SnowballStemmer
 
 app = Flask(__name__)
 FILES = 'logfiles'
 DATA = 'data'
 app.config['FILES'] = FILES
 app.config['DATA'] = DATA
-lines_to_select = []
+
+lines_to_select = {}
+result_to_vector = ''
+suggest_solution = ''
+filename = ''
+
 
 #path
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -20,10 +32,21 @@ file_dir = os.path.join(basedir, app.config['FILES'])
 
 
 ALLOWED_EXTENSIONS = set(['txt','png','jpg','xls','JPG','PNG','xlsx','gif','csv'])
+stemmer = SnowballStemmer('english')
 
 #detect the type of file
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.',1)[1] in ALLOWED_EXTENSIONS
+
+def tokenize_and_stem(error_line):
+    #tokenize the word and then stem them
+    tokens = [word for word in nltk.word_tokenize(error_line)]
+    filtered_tokens = []
+    for token in tokens:
+        if re.search('[a-zA-Z]',token):
+            filtered_tokens.append(token)
+    stems = [stemmer.stem(t) for t in filtered_tokens]
+    return stems
 
 ##collect files
 @app.route('/support')
@@ -56,11 +79,18 @@ def upload():
 	#else:  //TODO
 	tag_need = ["ERROR", "WARN"]
 	global lines_to_select
-	lines_to_select = []
+	lines_to_select = {}
+	count = 0
 	with open(csv_dir, 'r') as file:
 		for line in file:
 			if line.split(",")[0] in tag_need:
-				lines_to_select.append(line)
+				count += 1
+				lines_to_select[count] = line
+	print("dict in collect:", lines_to_select)
+
+
+
+
 
 	return render_template("successPage.html", lines_to_select = lines_to_select)
 
@@ -79,23 +109,42 @@ def upload():
 		json.dump(dic, solutions)
 		'''
 
-@app.route('/select', methods=['GET','POST'], strict_slashes = False)
+@app.route('/select', methods = ['GET','POST'], strict_slashes = False)
 
 def select():
 	basedir = os.path.abspath(os.path.dirname(__file__))
 	file_dir = os.path.join(basedir, app.config['DATA'])
-	selected_lines = request.values.getlist('select_lines')
+	selected_lines = request.values.getlist('selected')
 	print(selected_lines)
 	unix_time = int(time.time())
+	global filename
 	filename = str(unix_time) + ".csv"
 	data_dir = os.path.join(file_dir,filename)
 	global lines_to_select
+	print("dictionary:" , lines_to_select)
+	global result_to_vector
+	result_to_vector = ''
 
 	#save selected lines as csv
 	with open(data_dir, 'a+') as f:
-		for l in selected_lines:
-			f.write(l)
+		for key in selected_lines:
+			print(lines_to_select[int(key)])
+			f.write(lines_to_select[int(key)])
+			result_to_vector += lines_to_select[int(key)].split(",")[-1]
 
+	#prediction part
+	test_solution = joblib.load(basedir + '/pickles/test_solution.pkl')
+	load_tfidf_vectorizer = pickle.load(open(basedir+"/pickles/tfidf_vectorizer.pkl","rb"),encoding = "latin1")
+	log_vec = load_tfidf_vectorizer.transform([result_to_vector])
+	km = joblib.load(basedir + '/pickles/doc_cluster.pkl')
+	label = km.predict(log_vec)[0]
+	global suggest_solution
+	suggest_solution = test_solution[label]
+
+	return render_template("predict.html", suggest_solution = suggest_solution)
+
+	#return render_template("successPage.html", lines_to_select = lines_to_select)
+'''暂时不用
 	#solution dict part
 	s = request.form['solution']
 	print(basedir)
@@ -108,7 +157,54 @@ def select():
 	with open(basedir + '/solutions.json', 'w') as solutions:
 		json.dump(dic, solutions)
 
+
+	#prediction part
+	test_solution = joblib.load('test_solution.pkl')
+	load_tfidf_vectorizer = pickle.load(open(basedir+"/pickles/tfidf_vectorizer.pkl","rb"),encoding = "latin1")
+	log_vec = load_tfidf_vectorizer.transform([result_to_vector])
+	km = joblib.load('doc_cluster.pkl')
+	label = km.predict(log_vec)[0]
+	suggest_solution = test_solution[label]
+'''
+@app.route('/predictSuccess', methods = ['POST'], strict_slashes = False)
+
+def addCount():
+	#open solutions.json, count++, dict[filename.csv] = result
+	global lines_to_select
+	global filename
+	global suggest_solution
+	basedir = os.path.abspath(os.path.dirname(__file__))
+	with open(basedir + '/solutions.json', 'r') as solutions:
+		dic = json.load(solutions)
+		if filename in dic:
+			filename = filename + 'another'
+		dic[filename] = suggest_solution
+	with open(basedir + '/solutions.json', 'w') as solutions:
+		json.dump(dic, solutions)
+		
 	return render_template("successPage.html", lines_to_select = lines_to_select)
+
+
+@app.route('/addSolution', methods = ['POST'], strict_slashes = False)
+
+def addNew():
+
+	global lines_to_select
+	global filename
+	global suggest_solution
+	basedir = os.path.abspath(os.path.dirname(__file__))
+	newSolution = request.form['newSolution']
+	with open(basedir + '/solutions.json', 'r') as solutions:
+		dic = json.load(solutions)
+		if filename in dic:
+			filename = filename + 'another'
+		dic[filename] = newSolution
+		dic["count"] += 1
+	with open(basedir + '/solutions.json', 'w') as solutions:
+		json.dump(dic, solutions)
+		
+	return render_template("successPage.html", lines_to_select = lines_to_select)
+
 
 
 

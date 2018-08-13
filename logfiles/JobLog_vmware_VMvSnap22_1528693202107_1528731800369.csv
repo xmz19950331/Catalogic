@@ -1,0 +1,22 @@
+Type,Time,Server Time,Task ID,Message
+INFO,1528693203468,Mon 11 Jun 2018 05:00:03 UTC,,===== Starting job for policy vmware_VMvSnap22 (ID:1080) on Monday  June 11  2018 5:00:03 AM UTC.  id 1528693202107 =====
+INFO,1528693203468,Mon 11 Jun 2018 05:00:03 UTC,,IBM Spectrum Protect Plus version 10.1.1-142
+INFO,1528693203862,Mon 11 Jun 2018 05:00:03 UTC,,This  protection job will protect the virtual machines  data stores on a virtual center and provides the life cycle.
+INFO,1528693212857,Mon 11 Jun 2018 05:00:12 UTC,1,----- Policy resolution task 1 is starting. -----
+INFO,1528693212857,Mon 11 Jun 2018 05:00:12 UTC,1,----- Number of elements in policy 2 -----
+INFO,1528693213029,Mon 11 Jun 2018 05:00:13 UTC,1,----- Policy resolution task 1 completed in 172 ms with status COMPLETED. ----- 
+INFO,1528693222821,Mon 11 Jun 2018 05:00:22 UTC,2,Finding virtual machines that need to be replicated
+INFO,1528693224734,Mon 11 Jun 2018 05:00:24 UTC,2,Finding data stores that need to be replicated
+ERROR,1528693224783,Mon 11 Jun 2018 05:00:24 UTC,2,Unable to find target backup volume for hypervisor volume wclr415-3
+ERROR,1528693224784,Mon 11 Jun 2018 05:00:24 UTC,2,Unable to determine backup policy name from recovery points. Cannot proceed with replication
+INFO,1528693226938,Mon 11 Jun 2018 05:00:26 UTC,,===== Job policy vmware_VMvSnap22 completed in 23 sec(s) and ended with status FAILED on Monday  June 11  2018 5:00:26 AM UTC.  id 1528693202107 ===== 
+INFO,1528693226938,Mon 11 Jun 2018 05:00:26 UTC,,-----------------------------------------------------
+INFO,1528693226938,Mon 11 Jun 2018 05:00:26 UTC,,Summary report for policy vmware_VMvSnap22 id 1528693202107
+INFO,1528693226938,Mon 11 Jun 2018 05:00:26 UTC,,Total tasks       : 2
+INFO,1528693226938,Mon 11 Jun 2018 05:00:26 UTC,,Failed tasks      : 1
+INFO,1528693226938,Mon 11 Jun 2018 05:00:26 UTC,,Task 1 : Resolve completed with status COMPLETED
+INFO,1528693226938,Mon 11 Jun 2018 05:00:26 UTC,,Task 2 : Replication completed with status FAILED
+INFO,1528693226938,Mon 11 Jun 2018 05:00:26 UTC,,Job policy vmware_VMvSnap22 completed with status FAILED id 1528693202107
+INFO,1528693226938,Mon 11 Jun 2018 05:00:26 UTC,,-----------------------------------------------------
+INFO,1528693234831,Mon 11 Jun 2018 05:00:34 UTC,,Starting  cataloging task for  search.
+INFO,1528693234831,Mon 11 Jun 2018 05:00:34 UTC,,Completed cataloging task for  search in 0 seconds. Files Indexed : 0   Files Skipped : 0 .
