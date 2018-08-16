@@ -1,0 +1,29 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+
+<body>
+	<h1>Upload successfully!</h1>
+	<form method = "post" action = "/select" enctype="multipart/form-data">>
+		<div class = "form-group">
+			<label for = "selectlines">Select relative lines and confirm</label>
+			{% for key in lines_to_select %}
+    		<div>
+    			<label>
+    				<input name = "selected" value = {{key}} type = "checkbox"> {{lines_to_select[key]}}
+    			</label>
+    		</div>
+    		{% endfor %}
+    	</div>
+    	<input type = "submit" value = "confirm">
+    </form>
+
+
+
+	<p><a href="/support">Click to contribute more!</a></p>
+</body>

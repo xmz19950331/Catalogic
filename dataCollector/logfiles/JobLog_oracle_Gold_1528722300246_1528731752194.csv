@@ -1,0 +1,13 @@
+Type,Time,Server Time,Task ID,Message
+INFO,1528722300213,Mon 11 Jun 2018 13:05:00 UTC,,===== Starting job for policy oracle_Gold (ID:1039) on Monday  June 11  2018 1:05:00 PM UTC.  id 1528722300246 =====
+INFO,1528722300214,Mon 11 Jun 2018 13:05:00 UTC,,IBM Spectrum Protect Plus version 10.1.1-142
+INFO,1528722300295,Mon 11 Jun 2018 13:05:00 UTC,,This job will protect application instances and databases with log backup.
+INFO,1528722300295,Mon 11 Jun 2018 13:05:00 UTC,,This job contains at least two types of tasks: job resolution and protection.
+INFO,1528722300973,Mon 11 Jun 2018 13:05:00 UTC,1,----- Policy resolution task 1 is starting. -----
+INFO,1528722300973,Mon 11 Jun 2018 13:05:00 UTC,1,----- Number of elements in policy 0 -----
+INFO,1528722301168,Mon 11 Jun 2018 13:05:01 UTC,1,----- Policy resolution task 1 completed in 195 ms with status COMPLETED. ----- 
+INFO,1528722301213,Mon 11 Jun 2018 13:05:01 UTC,2,----- Starting Protection task 2. -----
+INFO,1528722302194,Mon 11 Jun 2018 13:05:02 UTC,2,Cataloging application and storage resources
+ERROR,1528722302194,Mon 11 Jun 2018 13:05:02 UTC,2,There are no databases selected to protect by this job
+INFO,1528722302200,Mon 11 Jun 2018 13:05:02 UTC,2,Condensing catalog
+INFO,1528722302282,Mon 11 Jun 2018 13:05:02 UTC,2,----- Protection task 2 completed in 1 sec(s) and ended with status FAILED. ----- 

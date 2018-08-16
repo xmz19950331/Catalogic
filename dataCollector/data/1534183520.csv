@@ -1,0 +1,3 @@
+ERROR,1528731604893,Mon 11 Jun 2018 15:40:04 UTC,2,Failed to get virtual disks for IBMGrestLDV-clone04-clone00
+ERROR,1528731605035,Mon 11 Jun 2018 15:40:05 UTC,2,Unprotected vm:IBMGrestLDV-clone04-clone00 [[ Failed to find any data stores for this vm.]]
+ERROR,1528731608008,Mon 11 Jun 2018 15:40:08 UTC,2,Unable to get catalog data for VM IBMGrestLDV-clone04-clone00. Reason: Did not find object with key: dfa3087a6b75587b4f9570fb1278e8bf

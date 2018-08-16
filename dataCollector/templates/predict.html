@@ -1,0 +1,24 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+
+<body>
+  <h1>Get it!</h1>
+  <p>I find a suggest solution for you. Is that what you want?</p>
+  <p>{{suggest_solution}}
+  <form method = "POST" action = "/predictSuccess" enctype="multipart/form-data">
+    <p>If it is, please press confirm here: <input type = "submit" value = "confirm"></p>
+  </form>
+  <form method = "POST" action = "/addSolution" enctype="multipart/form-data">
+    <p>If no, please enter your solution here: <input type = "text" name = "newSolution"><input type = "submit" value = "upload"></p>
+  </form>
+
+
+
+  <p><a href="/support">Click to contribute more!</a></p>
+</body>

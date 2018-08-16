@@ -1,0 +1,38 @@
+Type,Time,Server Time,Task ID,Message
+INFO,1528731600207,Mon 11 Jun 2018 15:40:00 UTC,,===== Starting job for policy vmware_SLAVM (ID:1004) on Monday  June 11  2018 3:40:00 PM UTC.  id 1528731600187 =====
+INFO,1528731600207,Mon 11 Jun 2018 15:40:00 UTC,,IBM Spectrum Protect Plus version 10.1.1-142
+INFO,1528731600290,Mon 11 Jun 2018 15:40:00 UTC,,This  protection job will protect the virtual machines  data stores on a virtual center and provides the life cycle.
+INFO,1528731601460,Mon 11 Jun 2018 15:40:01 UTC,1,----- Policy resolution task 1 is starting. -----
+INFO,1528731601460,Mon 11 Jun 2018 15:40:01 UTC,1,----- Number of elements in policy 1 -----
+INFO,1528731601596,Mon 11 Jun 2018 15:40:01 UTC,1,----- Policy resolution task 1 completed in 136 ms with status COMPLETED. ----- 
+INFO,1528731601621,Mon 11 Jun 2018 15:40:01 UTC,2,----- Starting snapshot task 2 for SLAVM storage work flow. -----
+INFO,1528731601822,Mon 11 Jun 2018 15:40:01 UTC,2,Job options : retention (type:days count:15))
+INFO,1528731601823,Mon 11 Jun 2018 15:40:01 UTC,2,Finding virtual machines that need to be protected
+INFO,1528731603406,Mon 11 Jun 2018 15:40:03 UTC,2,VM(s) Excluded:[IBMGrestLDV-clone04]
+INFO,1528731603409,Mon 11 Jun 2018 15:40:03 UTC,2,Finding data stores that need to be protected
+ERROR,1528731604194,Mon 11 Jun 2018 15:40:04 UTC,2,Unable to get live virtual machine for IBMGrestLDV-clone04-clone00 Error: Did not find object with key: dfa3087a6b75587b4f9570fb1278e8bf
+ERROR,1528731604195,Mon 11 Jun 2018 15:40:04 UTC,2,Failed to get hypervisor volume for vm IBMGrestLDV-clone04-clone00 Unable to get live virtual machine for IBMGrestLDV-clone04-clone00 Error: Did not find object with key: dfa3087a6b75587b4f9570fb1278e8bf
+INFO,1528731604208,Mon 11 Jun 2018 15:40:04 UTC,2,Finding virtual disks of virtual machines
+ERROR,1528731604893,Mon 11 Jun 2018 15:40:04 UTC,2,Failed to get virtual disks for IBMGrestLDV-clone04-clone00
+INFO,1528731604915,Mon 11 Jun 2018 15:40:04 UTC,2,Finding storage information of hypervisor volumes
+INFO,1528731604924,Mon 11 Jun 2018 15:40:04 UTC,2,Finding storage information of RDM volumes
+INFO,1528731605023,Mon 11 Jun 2018 15:40:05 UTC,2,Total virtual machines protected by job vmware_SLAVM : 0.
+ERROR,1528731605029,Mon 11 Jun 2018 15:40:05 UTC,2,Total unprotected virtual machines by job vmware_SLAVM : 1.
+ERROR,1528731605035,Mon 11 Jun 2018 15:40:05 UTC,2,Unprotected vm:IBMGrestLDV-clone04-clone00 [[ Failed to find any data stores for this vm.]]
+INFO,1528731605036,Mon 11 Jun 2018 15:40:05 UTC,2,Collecting details of vms and volumes
+INFO,1528731605809,Mon 11 Jun 2018 15:40:05 UTC,2,Inventorying protected objects
+ERROR,1528731608008,Mon 11 Jun 2018 15:40:08 UTC,2,Unable to get catalog data for VM IBMGrestLDV-clone04-clone00. Reason: Did not find object with key: dfa3087a6b75587b4f9570fb1278e8bf
+INFO,1528731608016,Mon 11 Jun 2018 15:40:08 UTC,2,Condensing Inventory
+INFO,1528731608137,Mon 11 Jun 2018 15:40:08 UTC,2,Total VMs protected: 0  failed: 1. Total transfer size: 0.00 B; Throughput: 0.00 B/Sec; Duration  0H:00M:07S
+INFO,1528731608160,Mon 11 Jun 2018 15:40:08 UTC,2,----- Snapshot task 2 completed for SLAVM storage work flow in 3 sec(s) ms and ended with status FAILED. -----
+INFO,1528731608837,Mon 11 Jun 2018 15:40:08 UTC,,===== Job policy vmware_SLAVM completed in 8 sec(s) and ended with status FAILED on Monday  June 11  2018 3:40:08 PM UTC.  id 1528731600187 ===== 
+INFO,1528731608837,Mon 11 Jun 2018 15:40:08 UTC,,-----------------------------------------------------
+INFO,1528731608837,Mon 11 Jun 2018 15:40:08 UTC,,Summary report for policy vmware_SLAVM id 1528731600187
+INFO,1528731608838,Mon 11 Jun 2018 15:40:08 UTC,,Total tasks       : 2
+INFO,1528731608838,Mon 11 Jun 2018 15:40:08 UTC,,Failed tasks      : 1
+INFO,1528731608838,Mon 11 Jun 2018 15:40:08 UTC,,Task 1 : Resolve completed with status COMPLETED
+INFO,1528731608838,Mon 11 Jun 2018 15:40:08 UTC,,Task 2 : Snapshot completed with status FAILED
+INFO,1528731608838,Mon 11 Jun 2018 15:40:08 UTC,,Job policy vmware_SLAVM completed with status FAILED id 1528731600187
+INFO,1528731608838,Mon 11 Jun 2018 15:40:08 UTC,,-----------------------------------------------------
+INFO,1528731634676,Mon 11 Jun 2018 15:40:34 UTC,,Starting  cataloging task for  search.
+INFO,1528731634677,Mon 11 Jun 2018 15:40:34 UTC,,Completed cataloging task for  search in 0 seconds. Files Indexed : 0   Files Skipped : 0 .
